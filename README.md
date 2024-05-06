@@ -1,0 +1,1 @@
+# django_ninja_tutorial
