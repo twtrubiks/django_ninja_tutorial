@@ -1,0 +1,49 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Django ninja tutorial",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	// "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bullseye",
+	"dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+	"service": "devcontainer",
+	"workspaceFolder": "/workspace",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "pip3 install --user -r requirements.txt",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {
+			  "editor.fontSize": 22,
+			  "editor.lineHeight": 26,
+			  "extensions.ignoreRecommendations": true, // 是否忽略顯示建議的套件
+			  "files.trimTrailingWhitespace": true, // 儲存的時候，會幫你自動過濾多餘的空格
+			  "files.encoding": "utf8", // 設定預設編碼
+			  "files.autoGuessEncoding": false,
+
+			  "files.autoSave": "onFocusChange", // 是否自動儲存檔案
+			  // "files.autoSave": "afterDelay",
+			  // "files.autoSaveDelay": 500,
+
+			  "editor.selectionClipboard": false, // 關閉滑鼠滾輪中鍵複製功能
+			  "editor.stickyScroll.enabled": true // Sticky Scroll 預設是打開的
+			},
+			"extensions": [
+				"charliermarsh.ruff"
+			]
+		  }
+	}
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
