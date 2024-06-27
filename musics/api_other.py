@@ -7,6 +7,7 @@ from musics.models import Music
 
 from .schemas import (
     MultiMusicFilters,
+    MusicCustomExpressionFilterSchema,
     MusicFilter_Gt_10_Schema,
     MusicFilterContainsIgnoreCaseSchema,
     MusicFilterSchema,
@@ -42,6 +43,18 @@ def list_music_filter(request, filters: MusicFilterSchema = Query(...)):
     musics = filters.filter(musics)
     # look raw sql
     # print(filters.filter(musics).query)
+    return musics
+
+
+@router.get("/list_music_custom_expression_filter", response=List[MusicOut])
+def list_music_custom_expression_filter(
+    request, filters: MusicCustomExpressionFilterSchema = Query(...)
+):
+    musics = Music.objects.all()
+    musics = filters.filter(musics)
+    # look raw sql
+    # print(filters.filter(musics).query)
+
     return musics
 
 

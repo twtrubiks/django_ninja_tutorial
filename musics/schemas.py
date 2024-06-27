@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from typing import List, Optional
 
 from django.db.models import Q
@@ -61,6 +61,7 @@ class MusicOut(Schema):
     song: str
     singer: str
     count: int = 0
+    last_modify_date: datetime
     sheet: Optional[SheetSchema] = None
 
 
@@ -76,6 +77,40 @@ class MusicFilterSchema(FilterSchema):
 
     def filter_last_modify_date(self, val: date) -> Q:
         return Q(last_modify_date__date=val)
+
+
+class MusicCustomExpressionFilterSchema(FilterSchema):
+    song: Optional[str] = None
+    singer: Optional[str] = None
+    last_modify_date: Optional[date] = None
+    sheet_name: Optional[str] = None
+    operator: str | None = "and"
+
+    # https://django-ninja.dev/guides/input/filtering/
+    # The custom_expression method takes precedence over any other definitions described earlier,
+    # including filter_<fieldname> methods.
+
+    def custom_expression(self) -> Q:
+        q = Q()
+        if self.operator == "and":
+            if self.song:
+                q &= Q(song__icontains=self.song)
+            if self.singer:
+                q &= Q(singer__icontains=self.singer)
+            if self.last_modify_date:
+                q &= Q(last_modify_date__date=self.last_modify_date)
+            if self.sheet_name:
+                q &= Q(sheet__name__icontains=self.sheet_name)
+        else:
+            if self.song:
+                q |= Q(song__icontains=self.song)
+            if self.singer:
+                q |= Q(singer__icontains=self.singer)
+            if self.last_modify_date:
+                q |= Q(last_modify_date__date=self.last_modify_date)
+            if self.sheet_name:
+                q |= Q(sheet__name__icontains=self.sheet_name)
+        return q
 
 
 class MusicFilterContainsIgnoreCaseSchema(FilterSchema):
