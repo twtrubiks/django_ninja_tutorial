@@ -7,6 +7,8 @@ from musics.models import Music
 
 from .schemas import (
     MultiMusicFilters,
+    MusicCustomExpressionFilterSchema,
+    MusicCustomExpressionRefactorFilterSchema,
     MusicFilter_Gt_10_Schema,
     MusicFilterContainsIgnoreCaseSchema,
     MusicFilterSchema,
@@ -40,8 +42,38 @@ def page_paginate(request):
 def list_music_filter(request, filters: MusicFilterSchema = Query(...)):
     musics = Music.objects.all()
     musics = filters.filter(musics)
+
     # look raw sql
-    # print(filters.filter(musics).query)
+    # print(musics.query)
+
+    return musics
+
+
+@router.get("/list_music_custom_expression_filter", response=List[MusicOut])
+def list_music_custom_expression_filter(
+    request,
+    filters: MusicCustomExpressionFilterSchema = Query(...),
+):
+    musics = Music.objects.all()
+    musics = filters.filter(musics)
+
+    # look raw sql
+    print(musics.query)
+
+    return musics
+
+
+@router.get("/list_music_custom_expression_refactor_filter", response=List[MusicOut])
+def list_music_custom_expression_refactor_filter(
+    request,
+    filters: MusicCustomExpressionRefactorFilterSchema = Query(...),
+):
+    musics = Music.objects.all()
+    musics = filters.filter(musics)
+
+    # look raw sql
+    print(musics.query)
+
     return musics
 
 
@@ -51,8 +83,10 @@ def list_music_contains_ignore_case_filter(
 ):
     musics = Music.objects.all()
     musics = filters.filter(musics)
+
     # look raw sql
-    # print(filters.filter(musics).query)
+    # print(musics.query)
+
     return musics
 
 
@@ -60,6 +94,8 @@ def list_music_contains_ignore_case_filter(
 def list_music_gt_10_filter(request, filters: MusicFilter_Gt_10_Schema = Query(...)):
     musics = Music.objects.all()
     musics = filters.filter(musics)
+
     # look raw sql
-    # print(filters.filter(musics).query)
+    # print(musics.query)
+
     return musics
