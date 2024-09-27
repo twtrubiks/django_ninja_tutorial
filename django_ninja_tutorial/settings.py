@@ -107,6 +107,14 @@ DATABASES = {
 }
 
 
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# use mailpit
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "mailpit"
+EMAIL_PORT = 1025
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 

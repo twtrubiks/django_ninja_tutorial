@@ -20,5 +20,12 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data/pgdata
 
+  mailpit:
+    image: axllent/mailpit
+    restart: unless-stopped
+    ports:
+       - "8025:8025"
+       - "1025:1025"
+
 volumes:
   db-data:

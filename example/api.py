@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.http import HttpResponse
 from ninja import File, Form, Path, Query, Router
 from ninja.files import UploadedFile
@@ -92,6 +93,17 @@ def upload(request, file: UploadedFile = File(...)):
 @router.get("/test_service_unavailable_error")
 def test_service_unavailable_error(request):
     raise ServiceUnavailableError
+
+
+@router.post("/send_email")
+def send_email(request):
+    send_mail(
+        "Subject here",
+        "Here is the message.",
+        "from@example.com",
+        ["to@example.com"],
+        fail_silently=False,
+    )
 
 
 @router.post(
