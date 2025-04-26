@@ -1,12 +1,18 @@
 # django ninja 教學
 
+* [Youtube Tutorial - Django Ninja：Type Hints + Pydantic 驗證，打造 FastAPI 開發體驗！(等待新增)](xxx)
+
 官網介紹 [Django Ninja - Fast Django REST Framework](https://django-ninja.dev/)
 
-基本上, Django Ninja 就是在 django 上多加東西而已,
+Django Ninja 相對 FastAPI 的好處是可以直接無痛使用 Django 原生的 ORM,
 
-有超強的 [pydantic 教學](https://github.com/twtrubiks/python-notes/tree/master/pydantic_tutorial), 也可以自動產生文件,
+不需要像 FastAPI 那樣去決定用那套 ORM (可能用 SQLAlchemy 之類的).
 
-更支援 django 原生的 ORM, 非常建議大家玩玩看 😄
+基本上, Django Ninja 就是在 Django 核心之上，直接添加了一層強大且易用的 API 功能.
+
+有超強的 [Pydantic 教學](https://github.com/twtrubiks/python-notes/tree/master/pydantic_tutorial) 強大驗證,
+
+也可以自動產生文件, 非常建議大家玩玩看 😄
 
 這邊寫了一些範例, 建議大家直接進去 docs 裡面看.
 
@@ -177,3 +183,19 @@ class MusicAdmin(admin.ModelAdmin):
 - [Django Ninja Extra](https://eadwincode.github.io/django-ninja-extra/)
 
 - [Ninja JWT](https://eadwincode.github.io/django-ninja-jwt/)
+
+## Donation
+
+文章都是我自己研究內化後原創，如果有幫助到您，也想鼓勵我的話，歡迎請我喝一杯咖啡 :laughing:
+
+綠界科技ECPAY ( 不需註冊會員 )
+
+![alt tag](https://payment.ecpay.com.tw/Upload/QRCode/201906/QRCode_672351b8-5ab3-42dd-9c7c-c24c3e6a10a0.png)
+
+[贊助者付款](http://bit.ly/2F7Jrha)
+
+歐付寶 ( 需註冊會員 )
+
+![alt tag](https://i.imgur.com/LRct9xa.png)
+
+[贊助者付款](https://payment.opay.tw/Broadcaster/Donate/9E47FDEF85ABE383A0F5FC6A218606F8)
